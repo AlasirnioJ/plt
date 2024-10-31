@@ -17,3 +17,7 @@ class TestPigLatin(unittest.TestCase):
         translator = PigLatin("any")
         translation = translator.translate()
         self.assertEqual(translation, "anynay")
+    def test_word_starts_e(self):
+        translator = PigLatin("apple")
+        translation = translator.translate()
+        self.assertEqual(translation, "applenay")
