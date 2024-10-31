@@ -9,4 +9,5 @@ class PigLatin:
         return self._phrase
 
     def translate(self) -> str:
-        pass
+        if self._phrase.endswith("y"):
+            return self._phrase + "nay"
