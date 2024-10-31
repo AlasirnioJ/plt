@@ -10,27 +10,33 @@ class PigLatin:
 
     def translate(self) -> str:
         vowels = ["a", "e", "i", "o", "u"]
-        ending = self._phrase[-1]
+        phrases = self._phrase.split(" ")
+        return_string = ""
+        for phrase in phrases:
+            ending = phrase[-1]
+            if phrase[0] not in vowels:
+                if phrase[1] not in vowels:
+                    index = 0
+                    for char in phrase:
+                        if char not in vowels:
+                            index += 1
+                        else:
+                            continue
+                    start = phrase[:index]
+                    return_string +=  phrase[index:] + start + "ay "
+                    continue
+                start = phrase[1:]
+                return_string +=  start + phrase[0]  + "ay "
+                continue
 
-
-
-        if self._phrase[0] not in vowels:
-            if self._phrase[1] not in vowels:
-                index = 0
-                for char in self._phrase:
-                    if char not in vowels:
-                        index += 1
-                    else:
-                        break
-                start = self._phrase[:index]
-                print("start", start)
-                return self._phrase[index:] + start + "ay"
-            start = self._phrase[1:]
-            return start + self._phrase[0]  + "ay"
-
-
-        if ending == "y":
-            return self._phrase + "nay"
-        if ending in vowels:
-            return self._phrase + "nay"
-        return self._phrase + "ay"
+            if ending == "y ":
+                return_string +=  phrase + "nay "
+                continue
+            if ending in vowels:
+                return_string +=  phrase + "nay "
+                continue
+            return_string += phrase + "ay "
+            continue
+        if return_string[-1] == " ":
+            return_string = return_string[:-1]
+        return return_string
