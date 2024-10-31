@@ -1,4 +1,6 @@
 import unittest
+
+import piglatin
 from piglatin import PigLatin
 from error import PigLatinError
 
@@ -38,4 +40,8 @@ class TestPigLatin(unittest.TestCase):
         translator = PigLatin("hello world")
         translation = translator.translate()
         self.assertEqual(translation, "ellohay orldway")
+    def test_translate_unison_word(self):
+        translator = PigLatin("well-being")
+        translation = translator.translate()
+        self.assertEqual(translation, "ellway-eingbay")
 
