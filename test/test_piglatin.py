@@ -21,3 +21,7 @@ class TestPigLatin(unittest.TestCase):
         translator = PigLatin("apple")
         translation = translator.translate()
         self.assertEqual(translation, "applenay")
+    def test_word_starts_k(self):
+        translator = PigLatin("ask")
+        translation = translator.translate()
+        self.assertEqual(translation, "askay")

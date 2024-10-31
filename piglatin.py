@@ -9,7 +9,10 @@ class PigLatin:
         return self._phrase
 
     def translate(self) -> str:
-        vowels = ["a", "e", "i", "o", "u", "y"]
+        vowels = ["a", "e", "i", "o", "u"]
         ending = self._phrase[-1]
+        if ending == "y":
+            return self._phrase + "nay"
         if ending in vowels:
             return self._phrase + "nay"
+        return self._phrase + "ay"
