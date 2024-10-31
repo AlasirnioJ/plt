@@ -1,3 +1,6 @@
+from curses.ascii import isupper
+
+
 class PigLatin:
 
     def __init__(self, phrase: str):
@@ -11,6 +14,7 @@ class PigLatin:
     def translate(self) -> str:
         vowels = ["a", "e", "i", "o", "u"]
         punctuations = [".", "?", "!"]
+
         punctuation = ""
         separator = " "
         if "-" in self._phrase:
@@ -18,6 +22,8 @@ class PigLatin:
         phrases = self._phrase.split(separator)
         return_string = ""
         for phrase in phrases:
+
+            isupper = phrase.isupper()
 
             if phrase[-1] in punctuations:
                     punctuation = phrase[-1]
@@ -35,19 +41,34 @@ class PigLatin:
                         else:
                             break
                     start = phrase[:index]
-                    return_string +=  phrase[index:] + start + "ay" + punctuation  + separator
+                    returnable = phrase[index:] + start + "ay" + punctuation  + separator
+                    if isupper:
+                        returnable = returnable.upper()
+                    return_string +=  returnable
                     continue
                 start = phrase[1:]
-                return_string +=  start + phrase[0]  + "ay" + punctuation + separator
+                returnable =  start + phrase[0]  + "ay" + punctuation + separator
+                if isupper:
+                    returnable = returnable.upper()
+                return_string += returnable
                 continue
 
             if ending == "y":
-                return_string +=  phrase + "nay" + punctuation  + separator
+                returnable =  phrase + "nay" + punctuation  + separator
+                if isupper:
+                    returnable = returnable.upper()
+                return_string += returnable
                 continue
             if ending in vowels:
-                return_string +=  phrase + "nay" + punctuation + separator
-                continue
-            return_string += phrase + "ay" + punctuation + separator
+               returnable = phrase + "yay" + punctuation + separator
+               if isupper:
+                    returnable = returnable.upper()
+               return_string += returnable
+               continue
+            returnable = phrase + "ay" + punctuation + separator
+            if isupper:
+                returnable = returnable.upper()
+            return_string += returnable
             continue
         if return_string[-1] == " " or return_string[-1] == "-":
             return_string = return_string[:-1]

@@ -22,7 +22,7 @@ class TestPigLatin(unittest.TestCase):
     def test_word_starts_e(self):
         translator = PigLatin("apple")
         translation = translator.translate()
-        self.assertEqual(translation, "applenay")
+        self.assertEqual(translation, "appleyay")
     def test_word_starts_k(self):
         translator = PigLatin("ask")
         translation = translator.translate()
@@ -48,4 +48,7 @@ class TestPigLatin(unittest.TestCase):
         translator = PigLatin("hello world!")
         translation = translator.translate()
         self.assertEqual(translation, "ellohay orldway!")
-
+    def test_capitalization(self):
+        translator = PigLatin("APPLE")
+        translation = translator.translate()
+        self.assertEqual(translation, "APPLEYAY")
